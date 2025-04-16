@@ -1,0 +1,6 @@
+@Taskey.Server.WebAPI_HostAddress = http://localhost:5297
+
+GET {{Taskey.Server.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
