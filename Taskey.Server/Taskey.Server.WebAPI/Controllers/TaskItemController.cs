@@ -38,8 +38,15 @@ namespace Taskey.Server.WebAPI.Controllers
                 return BadRequest("Task creation failed. ID was not assigned.");
             }
 
+            // Test here
+            var generatedUrl = Url.Action(nameof(GetTaskByIdAsync), new { controller=nameof(TaskItemController), id = createdTask.Id });
+            _logger.LogInformation("Generated URL: {Url}", generatedUrl);
+
+            _logger.LogInformation("Route: {Url}", nameof(GetTaskByIdAsync));
+
+
             // Return a 201 Created response with the location of the new resource
-            return CreatedAtAction(nameof(GetTaskByIdAsync), new { id = createdTask.Id }, createdTask);
+            return CreatedAtAction(nameof(GetTaskByIdAsync), new { controller=nameof(TaskItemController), id = createdTask.Id }, createdTask);
         }
         #endregion
 
