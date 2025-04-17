@@ -39,19 +39,20 @@ namespace Taskey.Server.WebAPI.Controllers
             }
 
             // Test here
-            var generatedUrl = Url.Action(nameof(GetTaskByIdAsync), new { controller=nameof(TaskItemController), id = createdTask.Id });
+            var generatedUrl = Url.Action(nameof(GetTaskByIdAsync), new { id = createdTask.Id });
             _logger.LogInformation("Generated URL: {Url}", generatedUrl);
 
             _logger.LogInformation("Route: {Url}", nameof(GetTaskByIdAsync));
 
 
             // Return a 201 Created response with the location of the new resource
-            return CreatedAtAction(nameof(GetTaskByIdAsync), new { controller=nameof(TaskItemController), id = createdTask.Id }, createdTask);
+            return CreatedAtAction(nameof(GetTaskByIdAsync), new { id = createdTask.Id }, createdTask);
         }
         #endregion
 
         #region Read
         // Get a specific task by ID: api/<TaskController>/5
+        [ActionName("GetTaskByIdAsync")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTaskByIdAsync(int id)
         {
